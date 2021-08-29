@@ -15,5 +15,5 @@ yarn serve
 yarn build
 ```
 
-### 自定义配置
+### 自定义配置-zh
 See [参考配置](https://cli.vuejs.org/zh/config/).
