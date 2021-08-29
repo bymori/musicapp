@@ -16,4 +16,4 @@ yarn build
 ```
 
 ### 自定义配置
-See [参考配置](https://cli.vuejs.org/config/).
+See [参考配置](https://cli.vuejs.org/zh/config/).
