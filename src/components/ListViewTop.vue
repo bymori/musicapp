@@ -4,14 +4,14 @@
  * @Author: by_mori
  * @Date: 2021-08-31 21:44:16
  * @LastEditors: by_mori
- * @LastEditTime: 2021-08-31 23:04:01
+ * @LastEditTime: 2021-08-31 23:40:58
 -->
 <template>
   <div class="listViewTop">
     <img class="bg"
          :src="playlist.coverImgUrl">
     <div class="listViewTopNav">
-      <div class="back">
+      <div class="back" @click="$router.go(-1)">
         <svg class="icon"
              aria-hidden="true">
           <use xlink:href="#icon-guanbi"></use>
