@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-31 16:19:46
  * @LastEditors: by_mori
- * @LastEditTime: 2021-08-31 18:42:02
+ * @LastEditTime: 2021-08-31 18:56:01
 -->
 <template>
   <div class="recommendContainer">
@@ -14,7 +14,7 @@
          id="musicSwiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide"
-             v-for="(item,i) in musicList"
+             v-for="(item,i) in state.musicList"
              :key="i">
           <img :src="item.picUrl"
                :alt="item.name">
@@ -42,7 +42,42 @@ import NavHeader from './NavHeader.vue'
 import 'swiper/css/swiper.css'
 import Swiper from 'swiper'
 import { getMusicList } from '../api/index'
+import { reactive, onMounted, onUpdated } from 'vue'
 export default {
+  name: 'MusciList',
+  components: {
+    NavHeader,
+  },
+  setup () {
+    let state = reactive({ musicList: [] })
+    function changeValue (num) {
+      let res = 0
+      if (num >= 100000000) {
+        res = num / 100000000
+        res = res.toFixed(2) + '亿'
+      } else if (num >= 10000) {
+        res = num / 10000
+        res = res.toFixed(2) + '万'
+      }
+      return res
+    }
+    onMounted(async () => {
+      let result = await getMusicList()
+      state.musicList = result.data.result;
+      console.log(result)
+    })
+    onUpdated(() => {
+      var swiper = new Swiper('#musicSwiper', {
+        slidesPerView: 3,
+        spaceBetween: 10,
+      });
+    })
+    return {
+      state, changeValue
+    }
+  }
+}
+/* export default {
   name: 'MusciList',
   components: {
     NavHeader,
@@ -77,7 +112,7 @@ export default {
       spaceBetween: 10,
     });
   }
-}
+} */
 </script>
 
 <style lang="less" scoped>
