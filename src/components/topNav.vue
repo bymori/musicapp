@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-29 17:32:14
  * @LastEditors: by_mori
- * @LastEditTime: 2021-08-29 17:54:43
+ * @LastEditTime: 2021-08-29 17:57:35
 -->
 <template >
   <div class="topNav">
@@ -40,7 +40,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  // padding: 0 0.2rem;
+  padding: 0 0.2rem;
   .icon {
     width: 0.5rem;
     height: 0.5rem;
