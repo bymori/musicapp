@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-31 15:17:50
  * @LastEditors: by_mori
- * @LastEditTime: 2021-08-31 17:13:42
+ * @LastEditTime: 2021-08-31 19:18:38
  */
 import axios from 'axios';
 
@@ -23,4 +23,9 @@ export function getBanner(typeId = 1) {
 // limit: 取出数量 (不支持 offset)
 export function getMusicList(limit = 10) {
   return axios.get(`${baseUrl}/personalized?limit=${limit}`);
+}
+//获取歌单详情
+// 必选参数 : id : 歌单 id
+export function getPlaylistDetail(id) {
+  return axios.get(`${baseUrl}/playlist/detail?id=${id}`);
 }

@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-31 16:19:46
  * @LastEditors: by_mori
- * @LastEditTime: 2021-08-31 18:56:01
+ * @LastEditTime: 2021-08-31 21:17:28
 -->
 <template>
   <div class="recommendContainer">
@@ -13,7 +13,7 @@
     <div class="swiper-container"
          id="musicSwiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide"
+        <router-link :to="{path:'/listview',query:{id:item.id}}" class="swiper-slide"
              v-for="(item,i) in state.musicList"
              :key="i">
           <img :src="item.picUrl"
@@ -24,13 +24,10 @@
                  aria-hidden="true">
               <use xlink:href="#icon-bofang"></use>
             </svg>
-            <!-- <span>{{item.playCount}}</span> -->
             <span>{{changeValue(item.playCount)}}</span>
           </div>
-
-        </div>
+        </router-link>
       </div>
-      <!-- Add Pagination -->
       <div class="swiper-pagination"></div>
     </div>
 
