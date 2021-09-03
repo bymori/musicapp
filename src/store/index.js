@@ -4,19 +4,22 @@
  * @Author: by_mori
  * @Date: 2021-08-29 15:21:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-03 18:54:37
+ * @LastEditTime: 2021-09-03 22:41:35
  */
 import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-    playlist: [{al:{}}],
+    playlist: [{ al: {} }],
     playCurrentIndex: 0,
   },
   mutations: {
-    setPlaylist(state,value){
-      state.playlist=value
-    }
+    setPlaylist(state, value) {
+      state.playlist = value;
+    },
+    setPlayIndex(state, value) {
+      state.playCurrentIndex=value
+    },
   },
   actions: {},
   modules: {},
