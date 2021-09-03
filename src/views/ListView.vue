@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-31 19:20:12
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-03 19:09:03
+ * @LastEditTime: 2021-09-03 21:50:24
 -->
 <template>
   <div class="listView">
@@ -36,9 +36,9 @@ export default {
       let result = await getPlaylistDetail(id)
       state.playlist = result.data.playlist
       store.commit('setPlaylist',state.playlist.tracks)
-      console.log(result);
-      console.log(result.data.playlist);
-      console.log('484848797',state.playlist.tracks);
+      // console.log(result);
+      // console.log(result.data.playlist);
+      // console.log('484848797',state.playlist.tracks);
 
     })
     return {
