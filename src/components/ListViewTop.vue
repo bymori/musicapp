@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-31 21:44:16
  * @LastEditors: by_mori
- * @LastEditTime: 2021-08-31 23:40:58
+ * @LastEditTime: 2021-09-03 19:08:53
 -->
 <template>
   <div class="listViewTop">
@@ -86,6 +86,7 @@
 </template>
 
 <script>
+
 export default {
   props: ['playlist'],
   mounted () {

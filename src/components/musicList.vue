@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-31 16:19:46
  * @LastEditors: by_mori
- * @LastEditTime: 2021-08-31 21:17:28
+ * @LastEditTime: 2021-09-03 19:09:38
 -->
 <template>
   <div class="recommendContainer">
@@ -40,6 +40,7 @@ import 'swiper/css/swiper.css'
 import Swiper from 'swiper'
 import { getMusicList } from '../api/index'
 import { reactive, onMounted, onUpdated } from 'vue'
+
 export default {
   name: 'MusciList',
   components: {
@@ -61,6 +62,8 @@ export default {
     onMounted(async () => {
       let result = await getMusicList()
       state.musicList = result.data.result;
+      // this.$store.commit('setPlaylist',state.musicList.tracks)
+      // store.commit('setPlaylist',state.musicList.tracks)
       console.log(result)
     })
     onUpdated(() => {

@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-31 23:43:12
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-01 00:46:12
+ * @LastEditTime: 2021-09-03 18:26:01
 -->
 <template>
   <div class="playlist">
@@ -32,10 +32,12 @@
           <div class="content">
             <div class="title">{{item.name}}</div>
             <div class="anthor">
-              <!-- <span class="tag"
-                    v-for="(item,i) in item.ar"
-                    :key="i">{{item.name}}</span> -->
+              <span class="tag"
+                    v-for="(ar) in item.ar"
+                    :key="ar.id">{{ar.name}}</span>
+
               <span class="name">{{item.al.name}}</span>
+
             </div>
           </div>
         </div>
@@ -123,24 +125,12 @@ export default {
         word-break: break-all;
         word-wrap: break-word;
 
-        .index {
+        /* .index {
           width: 0.4rem;
-        }
+        } */
         .content {
           padding-left: 0.4rem;
           width: 100%;
-          .title {
-            width: calc(100% - 0.4rem);
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            word-break: break-all;
-            word-wrap: break-word;
-            font-size: 0.3rem;
-            font-weight: 900;
-            color: #000;
-            margin-bottom: 0.1rem;
-          }
           .anthor {
             color: #666;
             display: flex;
@@ -148,10 +138,27 @@ export default {
             height: 0.35rem;
             .name {
               width: 3rem;
+
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
             }
           }
         }
 
+        .title {
+          width: calc(100% - 0.1rem);
+          overflow: hidden;
+          white-space: nowrap;
+
+          text-overflow: ellipsis;
+          word-break: break-all;
+          word-wrap: break-word;
+          font-size: 0.3rem;
+          font-weight: 900;
+          color: #000;
+          margin-bottom: 0.1rem;
+        }
         .tag {
           font-size: 0.2rem;
           color: orangered;
