@@ -4,11 +4,11 @@
  * @Author: by_mori
  * @Date: 2021-09-03 18:27:03
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-03 22:29:17
+ * @LastEditTime: 2021-09-04 00:14:46
 -->
 <template>
   <div class="playController">
-    <div class="left">
+    <div class="left" @click="show=!show">
       <img :src="playlist[playCurrentIndex].al.picUrl"
            alt="">
       <div class="content">
@@ -34,6 +34,7 @@
         <use xlink:href="#icon-gedan"></use>
       </svg>
     </div>
+    <play-music @back="show=!show"  v-show="show"  :playDetail="playlist[playCurrentIndex]" ></play-music>
     <audio ref="audio"
            :src="`https://music.163.com/song/media/outer/url?id=${playlist[playCurrentIndex].id}.mp3`"></audio>
   </div>
@@ -41,10 +42,15 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
+import playMusic from '@/components/playMusic'
+
 export default {
+  components:{playMusic},
+
   data () {
     return {
-      paused: true
+      paused: true,
+      show:false
     }
   },
   computed: {
@@ -95,11 +101,12 @@ export default {
 
     .content {
       padding: 0 0.2rem;
-      // .title{
-      //   overflow:hidden;
-      //   white-space: nowrap;
-      //   text-overflow: ellipsis;
-      // }
+      .title{
+        width:4.3rem;
+        overflow:hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
       .tips {
         font-size: 0.2rem;
         color: #999;
