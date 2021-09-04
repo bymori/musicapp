@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-03 22:54:40
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-04 14:26:16
+ * @LastEditTime: 2021-09-04 17:53:10
 -->
 <template>
   <div class="playMusic">
@@ -35,7 +35,8 @@
         </svg>
       </div>
     </div>
-    <div class="playContent">
+    <div class="playContent"
+         v-show="!isLyric">
       <img class="needle"
            :class="{active:!paused}"
            src="@/assets/img/needle-ip6.png"
@@ -47,8 +48,10 @@
            :src="playDetail.al.picUrl"
            alt="">
     </div>
-    <div class="playLyric">
-
+    <div class="playLyric"
+         v-show="isLyric">
+      <p v-for="(item,i) in $store.getters.lyricList"
+         :key="i">{{item.lyric}}</p>
     </div>
     <div class="progress"></div>
     <div class="playFooter">
@@ -81,8 +84,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   props: ['playDetail', 'paused', 'play'],
+  data () {
+    return {
+      isLyric: true
+    }
+  },
+  computed: {
+    ...mapState(['lyric']),
+
+  }
 }
 </script>
 
@@ -171,7 +184,20 @@ export default {
       top: 3.55rem;
     }
   }
-
+  .playLyric {
+    position: absolute;
+    width: 7.5rem;
+    height: 8rem;
+    left: 0;
+    top: calc(50% - 4rem);
+    overflow: scroll;
+    text-align: center;
+    color: #fff;
+    padding: 0.2rem 0;
+    .active {
+      color: red;
+    }
+  }
   .playFooter {
     width: 7.5rem;
     height: 1.5rem;

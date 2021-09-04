@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-03 18:27:03
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-04 14:24:33
+ * @LastEditTime: 2021-09-04 14:59:37
 -->
 <template>
   <div class="playController">
@@ -64,6 +64,7 @@ export default {
   },
   mounted () {
     console.log(this.$refs.audio);
+    this.$store.dispatch('reqLyric',{id:this.playlist[this.playCurrentIndex].id})
   },
   updated () {
     console.log(this.playlist[this.playCurrentIndex]);

@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-31 15:17:50
  * @LastEditors: by_mori
- * @LastEditTime: 2021-08-31 19:18:38
+ * @LastEditTime: 2021-09-04 15:02:39
  */
 import axios from 'axios';
 
@@ -29,3 +29,16 @@ export function getMusicList(limit = 10) {
 export function getPlaylistDetail(id) {
   return axios.get(`${baseUrl}/playlist/detail?id=${id}`);
 }
+
+//获取歌词
+//必选参数 : id: 音乐 id
+export function getPlayLyric(id) {
+  return axios.get(`${baseUrl}/lyric?id=${id}`);
+}
+
+export default {
+  getBanner,
+  getMusicList,
+  getPlaylistDetail,
+  getPlayLyric,
+};

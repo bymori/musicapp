@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-31 21:44:16
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-03 19:08:53
+ * @LastEditTime: 2021-09-04 15:08:46
 -->
 <template>
   <div class="listViewTop">
@@ -90,7 +90,7 @@
 export default {
   props: ['playlist'],
   mounted () {
-    console.log(this.props);
+    // console.log(this.props);
   },
   methods: {
     changeValue: function (num) {
