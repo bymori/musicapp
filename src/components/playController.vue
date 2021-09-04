@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-03 18:27:03
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-04 18:54:57
+ * @LastEditTime: 2021-09-04 23:04:46
 -->
 <template>
   <div class="playController">
@@ -68,10 +68,11 @@ export default {
   },
   updated () {
     // console.log(this.playlist[this.playCurrentIndex]);
+    this.$store.dispatch('reqLyric', { id: this.playlist[this.playCurrentIndex].id })
   },
   methods: {
     play () {
-      console.log('播放时长',this.$refs.audio.currentTime);
+      console.log('播放时长', this.$refs.audio.currentTime);
       if (this.$refs.audio.paused) {
         this.$refs.audio.play()
         this.paused = false

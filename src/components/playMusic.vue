@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-03 22:54:40
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-04 22:46:50
+ * @LastEditTime: 2021-09-04 23:01:57
 -->
 <template>
   <div class="playMusic">
@@ -62,7 +62,8 @@
         <use xlink:href="#icon-suijibofang"></use>
       </svg>
       <svg class="icon"
-           aria-hidden="true" @click="goPlay(-1)">
+           aria-hidden="true"
+           @click="goPlay(-1)">
         <use xlink:href="#icon-shangyiqu"></use>
       </svg>
       <svg class="icon play"
@@ -74,7 +75,8 @@
              xlink:href="#icon-weibiaoti1"></use>
       </svg>
       <svg class="icon"
-           aria-hidden="true" @click="goPlay(1)">
+           aria-hidden="true"
+           @click="goPlay(1)">
         <use xlink:href="#icon-xiayiqu"></use>
       </svg>
       <svg class="icon"
@@ -95,14 +97,14 @@ export default {
     }
   },
   computed: {
-    ...mapState(['lyric', 'currentTime']),
+    ...mapState(['lyric', 'currentTime', 'playlist', 'playCurrentIndex']),
   },
   watch: {
     currentTime: function (newValue) {
       console.log(newValue)
       console.log([this.$refs.playLyric])
       let p = document.querySelector('p.active')
-      
+
       //this.$refs.playLyric.scrollTop = p.offsetTop;
       //let h=this.$refs.playLyric.offsetHeight
       // let offsetTop = p.offsetParent.offsetTop;
@@ -111,12 +113,22 @@ export default {
       // if (offsetTop>h) {
       //   //this.$refs.playLyric.offsetTop = this.$refs.playLyric.offsetTop+(offsetTop-h/2)
       // }
-      console.log('@@@@',[p]);
+      console.log('@@@@', [p]);
     }
   },
-  methods:{
-    goPlay(num){
-      
+  methods: {
+    goPlay (num) {
+      console.log(num);
+      console.log(this.playlist);
+      console.log(this.playCurrentIndex);
+      let index = this.playCurrentIndex + num
+
+      if (index < 0) {
+        index = this.playlist.length - 1;
+      } else if (index == this.playlist.length) {
+        index = 0
+      }
+      this.$store.commit('setPlayIndex', index)
     }
   }
 }
