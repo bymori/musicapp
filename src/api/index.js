@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-31 15:17:50
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-04 15:02:39
+ * @LastEditTime: 2021-09-05 02:14:24
  */
 import axios from 'axios';
 
@@ -36,9 +36,15 @@ export function getPlayLyric(id) {
   return axios.get(`${baseUrl}/lyric?id=${id}`);
 }
 
+//搜索歌曲
+export function getSearchMusic(keyword) {
+  return axios.get(`${baseUrl}/search?keywords=${keyword}`);
+}
+
 export default {
   getBanner,
   getMusicList,
   getPlaylistDetail,
   getPlayLyric,
+  getSearchMusic,
 };
