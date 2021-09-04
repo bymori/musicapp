@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-29 15:21:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-04 17:32:17
+ * @LastEditTime: 2021-09-04 18:53:50
  */
 import { createStore } from 'vuex';
 import api from '@/api';
@@ -27,13 +27,15 @@ export default createStore({
     ],
     playCurrentIndex: 0,
     lyric: '',
+    currentTime: 0,
+    intervalId: 0,
   },
   getters: {
     lyricList(state) {
-      let arr = state.lyric.split(/\n/gis).map((item, i) => {
-        let min = item.slice(1, 3);
-        let sec = item.slice(4, 6);
-        let mill = item.slice(7, 10);
+      let arr = state.lyric.split(/\n/gis).map((item, i, arr) => {
+        let min = parseInt(item.slice(1, 3));
+        let sec = parseInt(item.slice(4, 6));
+        let mill = parseInt(item.slice(7, 10));
         return {
           min,
           sec,
@@ -42,6 +44,13 @@ export default createStore({
           content: item,
           time: mill + sec * 1000 + min * 60 * 1000,
         };
+      });
+      arr.forEach((item, i) => {
+        if (i == 0) {
+          item.pre = 0;
+        } else {
+          item.pre = arr[i - 1].time;
+        }
       });
       console.log(arr);
       return arr;
@@ -56,6 +65,9 @@ export default createStore({
     },
     setLyric(state, value) {
       state.lyric = value;
+    },
+    setCurrentTime(state, value) {
+      state.currentTime = value;
     },
   },
   actions: {

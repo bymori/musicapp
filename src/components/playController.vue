@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-03 18:27:03
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-04 14:59:37
+ * @LastEditTime: 2021-09-04 18:54:57
 -->
 <template>
   <div class="playController">
@@ -39,8 +39,7 @@
                 v-show="show"
                 :playDetail="playlist[playCurrentIndex]"
                 :paused='paused'
-                :play='play'
-                ></play-music>
+                :play='play'></play-music>
     <audio ref="audio"
            :src="`https://music.163.com/song/media/outer/url?id=${playlist[playCurrentIndex].id}.mp3`"></audio>
   </div>
@@ -64,22 +63,31 @@ export default {
   },
   mounted () {
     console.log(this.$refs.audio);
-    this.$store.dispatch('reqLyric',{id:this.playlist[this.playCurrentIndex].id})
+    this.$store.dispatch('reqLyric', { id: this.playlist[this.playCurrentIndex].id })
+
   },
   updated () {
-    console.log(this.playlist[this.playCurrentIndex]);
+    // console.log(this.playlist[this.playCurrentIndex]);
   },
   methods: {
     play () {
+      console.log('播放时长',this.$refs.audio.currentTime);
       if (this.$refs.audio.paused) {
         this.$refs.audio.play()
         this.paused = false
+        this.UpdateTime()
       } else {
         this.$refs.audio.pause()
         this.paused = true
+        clearInterval(this.$store.state.id)
       }
       console.log(this.$refs.audio.paused);
-    }
+    },
+    UpdateTime () {
+      this.$store.state.id = setInterval(() => {
+        this.$store.commit('setCurrentTime', this.$refs.audio.currentTime)
+      }, 1000);
+    },
   }
 }
 </script>

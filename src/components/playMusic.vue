@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-03 22:54:40
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-04 17:53:10
+ * @LastEditTime: 2021-09-04 22:46:50
 -->
 <template>
   <div class="playMusic">
@@ -49,8 +49,10 @@
            alt="">
     </div>
     <div class="playLyric"
-         v-show="isLyric">
-      <p v-for="(item,i) in $store.getters.lyricList"
+         v-show="isLyric"
+         refs="playLyric">
+      <p :class="{active:(currentTime*1000>=item.pre&&currentTime*1000<item.time)}"
+         v-for="(item,i) in $store.getters.lyricList"
          :key="i">{{item.lyric}}</p>
     </div>
     <div class="progress"></div>
@@ -60,7 +62,7 @@
         <use xlink:href="#icon-suijibofang"></use>
       </svg>
       <svg class="icon"
-           aria-hidden="true">
+           aria-hidden="true" @click="goPlay(-1)">
         <use xlink:href="#icon-shangyiqu"></use>
       </svg>
       <svg class="icon play"
@@ -72,7 +74,7 @@
              xlink:href="#icon-weibiaoti1"></use>
       </svg>
       <svg class="icon"
-           aria-hidden="true">
+           aria-hidden="true" @click="goPlay(1)">
         <use xlink:href="#icon-xiayiqu"></use>
       </svg>
       <svg class="icon"
@@ -93,8 +95,29 @@ export default {
     }
   },
   computed: {
-    ...mapState(['lyric']),
-
+    ...mapState(['lyric', 'currentTime']),
+  },
+  watch: {
+    currentTime: function (newValue) {
+      console.log(newValue)
+      console.log([this.$refs.playLyric])
+      let p = document.querySelector('p.active')
+      
+      //this.$refs.playLyric.scrollTop = p.offsetTop;
+      //let h=this.$refs.playLyric.offsetHeight
+      // let offsetTop = p.offsetParent.offsetTop;
+      // console.log("1111111",p.offsetParent.offsetTop);
+      ///////this.$refs.playLyric.$el.scrollTop=p.offsetTop
+      // if (offsetTop>h) {
+      //   //this.$refs.playLyric.offsetTop = this.$refs.playLyric.offsetTop+(offsetTop-h/2)
+      // }
+      console.log('@@@@',[p]);
+    }
+  },
+  methods:{
+    goPlay(num){
+      
+    }
   }
 }
 </script>
