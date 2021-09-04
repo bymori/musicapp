@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-03 18:27:03
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-04 14:00:15
+ * @LastEditTime: 2021-09-04 14:24:33
 -->
 <template>
   <div class="playController">
@@ -38,7 +38,9 @@
     <play-music @back="show=!show"
                 v-show="show"
                 :playDetail="playlist[playCurrentIndex]"
-                :paused='paused'></play-music>
+                :paused='paused'
+                :play='play'
+                ></play-music>
     <audio ref="audio"
            :src="`https://music.163.com/song/media/outer/url?id=${playlist[playCurrentIndex].id}.mp3`"></audio>
   </div>

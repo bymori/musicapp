@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-03 22:54:40
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-04 13:58:35
+ * @LastEditTime: 2021-09-04 14:26:16
 -->
 <template>
   <div class="playMusic">
@@ -27,7 +27,6 @@
         <div class="anthor"
              v-for="(ar) in playDetail.ar"
              :key="ar.id">{{ar.name}}</div>
-
       </div>
       <div class="share">
         <svg class="icon"
@@ -37,7 +36,8 @@
       </div>
     </div>
     <div class="playContent">
-      <img class="needle" :class="{active:!paused}"
+      <img class="needle"
+           :class="{active:!paused}"
            src="@/assets/img/needle-ip6.png"
            alt="">
       <img class="disc"
@@ -47,15 +47,42 @@
            :src="playDetail.al.picUrl"
            alt="">
     </div>
-    <div class="playLyric"></div>
+    <div class="playLyric">
+
+    </div>
     <div class="progress"></div>
-    <div class="playFooter"></div>
+    <div class="playFooter">
+      <svg class="icon"
+           aria-hidden="true">
+        <use xlink:href="#icon-suijibofang"></use>
+      </svg>
+      <svg class="icon"
+           aria-hidden="true">
+        <use xlink:href="#icon-shangyiqu"></use>
+      </svg>
+      <svg class="icon play"
+           aria-hidden="true"
+           @click="play">
+        <use v-if="paused"
+             xlink:href="#icon-bofang"></use>
+        <use v-else
+             xlink:href="#icon-weibiaoti1"></use>
+      </svg>
+      <svg class="icon"
+           aria-hidden="true">
+        <use xlink:href="#icon-xiayiqu"></use>
+      </svg>
+      <svg class="icon"
+           aria-hidden="true">
+        <use xlink:href="#icon-gengduo1"></use>
+      </svg>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['playDetail','paused'],
+  props: ['playDetail', 'paused', 'play'],
 }
 </script>
 
@@ -142,6 +169,27 @@ export default {
       position: absolute;
       left: calc(50% - 1.7rem);
       top: 3.55rem;
+    }
+  }
+
+  .playFooter {
+    width: 7.5rem;
+    height: 1.5rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.4rem;
+    .icon {
+      fill: #fff;
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+    .play.icon {
+      width: 1rem;
+      height: 1rem;
     }
   }
 }
