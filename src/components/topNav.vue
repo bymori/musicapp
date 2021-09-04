@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-29 17:32:14
  * @LastEditors: by_mori
- * @LastEditTime: 2021-08-29 17:57:35
+ * @LastEditTime: 2021-09-04 23:26:52
 -->
 <template >
   <div class="topNav">
@@ -20,7 +20,7 @@
       <span class="navBtn">云村</span>
       <span class="navBtn">视频</span>
     </div>
-    <div class="topRight">
+    <div class="topRight" @click="$router.push('/searchview')">
       <svg class="icon sousuo"
            aria-hidden="true">
         <use xlink:href="#icon-sousuo"></use>
