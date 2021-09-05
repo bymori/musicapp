@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-31 21:44:16
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-05 02:16:28
+ * @LastEditTime: 2021-09-05 14:17:05
 -->
 <template>
   <div class="searchTop">
@@ -108,6 +108,17 @@ export default {
       this.searchSongs = result.data.result.songs
       console.log(`${this.searchKeyword}的搜索结果：`, result.data.result.songs);
       console.log(`${this.searchKeyword}的搜索结果2：`, this.searchSongs);
+    },
+    historySearch (keyword) {
+      this.searchKeyword = keyword
+      this.SaveKeyWord()
+    },
+    setPlay (item, i) {
+      item.al = item.album;
+      item.al.picUrl = item.album.artist.img1v1Url
+      console.log(item)
+      this.$store.commit('pushPlaylist', item)
+      this.$store.commit('setPlayIndex', this.$store.state.playlist.length - 1)
     }
   },
 }

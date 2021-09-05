@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-09-03 22:54:40
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-04 23:01:57
+ * @LastEditTime: 2021-09-05 14:42:09
 -->
 <template>
   <div class="playMusic">
@@ -48,12 +48,21 @@
            :src="playDetail.al.picUrl"
            alt="">
     </div>
-    <div class="playLyric"
+
+    <!-- <div class="playLyric"
          v-show="isLyric"
          refs="playLyric">
       <p :class="{active:(currentTime*1000>=item.pre&&currentTime*1000<item.time)}"
          v-for="(item,i) in $store.getters.lyricList"
          :key="i">{{item.lyric}}</p>
+    </div> -->
+    <div class="playLyric"
+         v-show="isLyric"
+         ref="playLyric">
+      <p :class="{active:(currentTime*1000>=item.pre&&currentTime*1000<item.time)}"
+         v-for="(item,i) in $store.getters.lyricList"
+         :key="i">{{item.lyric}}</p>
+
     </div>
     <div class="progress"></div>
     <div class="playFooter">
@@ -104,7 +113,12 @@ export default {
       console.log(newValue)
       console.log([this.$refs.playLyric])
       let p = document.querySelector('p.active')
-
+      if (p) {
+        let offsetTop = p.offsetTop-20+'px';
+        this.$refs.playLyric.scrollTop = offsetTop;
+        // this.$refs.playLyric.$el.scrollTop=p.offsetTop
+        console.log('@@@@@', [p])
+      }
       //this.$refs.playLyric.scrollTop = p.offsetTop;
       //let h=this.$refs.playLyric.offsetHeight
       // let offsetTop = p.offsetParent.offsetTop;
@@ -113,7 +127,8 @@ export default {
       // if (offsetTop>h) {
       //   //this.$refs.playLyric.offsetTop = this.$refs.playLyric.offsetTop+(offsetTop-h/2)
       // }
-      console.log('@@@@', [p]);
+      // console.log('@@@@', [p].innerText);
+      // console.log('@@@@', [p].offsetParent.offsetTop);
     }
   },
   methods: {
