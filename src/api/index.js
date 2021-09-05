@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-31 15:17:50
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-05 02:14:24
+ * @LastEditTime: 2021-09-05 16:40:38
  */
 import axios from 'axios';
 
@@ -41,10 +41,23 @@ export function getSearchMusic(keyword) {
   return axios.get(`${baseUrl}/search?keywords=${keyword}`);
 }
 
+// 手机登录
+export function phoneLogin(phone, password) {
+  return axios.get(
+    `${baseUrl}/login/cellphone?phone=${phone}&password=${password}`
+  );
+}
+
+// 获取用户的详情
+export function userDetail(uid){
+    return axios.get(`${baseUrl}/user/detail?uid=${uid}`)
+}
 export default {
   getBanner,
   getMusicList,
   getPlaylistDetail,
   getPlayLyric,
   getSearchMusic,
+  phoneLogin,
+  userDetail,
 };

@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-29 15:21:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-03 18:30:22
+ * @LastEditTime: 2021-09-05 16:51:12
 -->
 <template>
   <router-view />
@@ -15,6 +15,11 @@ import playController from '@/components/playController'
 export default {
   components: {
     playController
+  },
+  mounted () {
+    let userData = JSON.parse(localStorage.userData);
+    console.log(userData)
+    this.$store.commit('setUser',userData)
   }
 }
 </script>

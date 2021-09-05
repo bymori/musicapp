@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-29 15:21:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-05 15:02:19
+ * @LastEditTime: 2021-09-05 16:38:36
  */
 import { createStore } from 'vuex';
 import api from '@/api';
@@ -31,7 +31,8 @@ export default createStore({
     intervalId: 0,
     user: {
       isLogin: false,
-      userInfo:'未登录用户'
+      account: {},
+      userDetail: {},
     },
   },
   getters: {
@@ -76,6 +77,9 @@ export default createStore({
     setCurrentTime(state, value) {
       state.currentTime = value;
     },
+    setUser(state, value) {
+      state.user = value;
+    },
   },
   actions: {
     async reqLyric(content, payload) {
@@ -84,6 +88,23 @@ export default createStore({
       content.commit('setLyric', result.data.lrc.lyric);
       console.log(`歌词：`, result.data.lrc.lyric);
     },
+    async phoneLogin(content, payload) {
+      // console.log(payload);
+      let result = await api.phoneLogin(payload.phone, payload.password);
+      if (result.data.code == 200) {
+        content.state.user.isLogin = true;
+        content.state.user.account = result.data.account;
+
+        let userDetail = await api.userDetail(result.data.account.id);
+        content.state.user.userDetail = userDetail.data;
+        localStorage.userData = JSON.stringify(content.state.user);
+        console.log(userDetail);
+        content.commit('setUser', content.state.user);
+      }
+      console.log(result);
+      return result;
+    },
   },
+
   modules: {},
 });
