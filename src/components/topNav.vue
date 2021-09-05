@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-29 17:32:14
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-04 23:26:52
+ * @LastEditTime: 2021-09-05 14:55:15
 -->
 <template >
   <div class="topNav">
@@ -15,12 +15,14 @@
       </svg>
     </div>
     <div class="topCenter">
-      <span class="navBtn">我的</span>
+      <span class="navBtn"
+            @click="$router.push('/me')">我的</span>
       <span class="navBtn action">发现</span>
       <span class="navBtn">云村</span>
       <span class="navBtn">视频</span>
     </div>
-    <div class="topRight" @click="$router.push('/searchview')">
+    <div class="topRight"
+         @click="$router.push('/searchview')">
       <svg class="icon sousuo"
            aria-hidden="true">
         <use xlink:href="#icon-sousuo"></use>
@@ -53,8 +55,8 @@
     width: 5rem;
     display: flex;
     justify-content: space-around;
-    .action{
-        font-weight: 900;
+    .action {
+      font-weight: 900;
     }
   }
 }

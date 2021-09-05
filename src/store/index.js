@@ -4,7 +4,7 @@
  * @Author: by_mori
  * @Date: 2021-08-29 15:21:41
  * @LastEditors: by_mori
- * @LastEditTime: 2021-09-05 14:14:17
+ * @LastEditTime: 2021-09-05 15:02:19
  */
 import { createStore } from 'vuex';
 import api from '@/api';
@@ -29,6 +29,10 @@ export default createStore({
     lyric: '',
     currentTime: 0,
     intervalId: 0,
+    user: {
+      isLogin: false,
+      userInfo:'未登录用户'
+    },
   },
   getters: {
     lyricList(state) {
@@ -61,7 +65,7 @@ export default createStore({
       state.playlist = value;
     },
     pushPlaylist(state, value) {
-      state.playlist.push(value)
+      state.playlist.push(value);
     },
     setPlayIndex(state, value) {
       state.playCurrentIndex = value;
